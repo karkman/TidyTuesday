@@ -7,17 +7,6 @@
 beer_awards <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-10-20/beer_awards.csv')
 ```
 
-    ## Parsed with column specification:
-    ## cols(
-    ##   medal = col_character(),
-    ##   beer_name = col_character(),
-    ##   brewery = col_character(),
-    ##   city = col_character(),
-    ##   state = col_character(),
-    ##   category = col_character(),
-    ##   year = col_double()
-    ## )
-
 ### Take a look at the data
 
 ``` r
@@ -56,7 +45,7 @@ ggplot() +
         text = element_text(family="Courier"))
 ```
 
-![](README_files/figure-gfm/map-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 ### Word clouds
 

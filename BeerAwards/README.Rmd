@@ -2,8 +2,8 @@
 output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tidyverse)
 library(patchwork)
 library(scico)
@@ -13,19 +13,19 @@ library(wordcloud)
 ## Beer Awards
 
 ### Read in the data
-```{r beer data}
+```{r}
 beer_awards <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-10-20/beer_awards.csv')
 ```
 
 ### Take a look at the data
 
-```{r correction}
+```{r}
 beer_awards <- beer_awards %>% mutate(state=str_to_upper(state))
 glimpse(beer_awards)
 ```
 
 ### Map
-```{r map}
+```{r}
 US_map <- map_data("state")
 US_states <- tibble(region=datasets::state.name, state=datasets::state.abb)
 US_states <- US_states %>% mutate(region=str_to_lower(region))
@@ -103,7 +103,5 @@ wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5,
 # Light lagers
 beer_name_freq <- beer_data %>% filter(category=="American-Style Light Lager") %>%  pull(beer_name) %>% str_split(" ") %>% unlist() %>% table() %>% data.frame()
 beer_name_freq <- beer_name_freq[order(beer_name_freq[,2], decreasing=TRUE),]
-
-#beer_name_freq <- beer_name_freq %>% filter(.!="Oatmeal", .!="Stout")
 
 wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.3, min.freq=1)
