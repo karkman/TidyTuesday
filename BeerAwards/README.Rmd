@@ -1,0 +1,109 @@
+---
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(patchwork)
+library(scico)
+library(wordcloud)
+```
+
+## Beer Awards
+
+### Read in the data
+```{r beer data}
+beer_awards <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-10-20/beer_awards.csv')
+```
+
+### Take a look at the data
+
+```{r correction}
+beer_awards <- beer_awards %>% mutate(state=str_to_upper(state))
+glimpse(beer_awards)
+```
+
+### Map
+```{r map}
+US_map <- map_data("state")
+US_states <- tibble(region=datasets::state.name, state=datasets::state.abb)
+US_states <- US_states %>% mutate(region=str_to_lower(region))
+beer_data <- full_join(beer_awards, US_states, by="state")
+
+gold_count <- beer_data %>% filter(medal=="Gold") %>% dplyr::count(region)
+state_gold_count <- left_join(US_map, gold_count, by="region")
+
+ggplot() + 
+  geom_polygon(data = state_gold_count, aes(x=long, y = lat, group=group, fill=n), color="grey40") + 
+  theme_classic() + scale_fill_scico(palette = 'lajolla', begin=0.1, end=0.7) + 
+  labs(title="GABF Gold Medal Winners in 1987 - 2020",
+       fill= "Gold Medals by State", caption="Data Source: Great American Beer Festival") +
+  theme(legend.position="bottom", axis.ticks=element_blank(), axis.line=element_blank(), 
+        axis.text=element_blank(), axis.title=element_blank(), 
+        text = element_text(family="Courier"))
+```
+
+```{r, eval=FALSE, include=FALSE}
+IPA_gold_count <- beer_data %>% filter(medal=="Gold", category == "American-Style India Pale Ale") %>%
+  dplyr::count(region)
+state_IPA_gold_count <- left_join(US_map, IPA_gold_count, by="region")
+
+p2 <- ggplot() + 
+  geom_polygon(data = state_IPA_gold_count, aes(x=long, y = lat, group=group, fill=n), color="grey40") + 
+  theme_classic() + scale_fill_scico(palette = 'lajolla', begin=0.1, end=0.7) + 
+  labs(title="GABF Gold Medal Winners in 1987 - 2020", subtitle="this is still a test", 
+       fill= "Gold Medals by State", caption="data source: XX") +
+  theme(legend.position="bottom", axis.ticks=element_blank(), axis.line=element_blank(),  
+        axis.text=element_blank(), axis.title=element_blank(), plot.title=element_text(face="bold"))
+
+LGR_gold_count <- beer_data %>% filter(medal=="Gold", category == "American-Style Light Lager") %>%
+  dplyr::count(region)
+state_LGR_gold_count <- left_join(US_map, LGR_gold_count, by="region")
+
+p3 <- ggplot() + 
+  geom_polygon(data = state_LGR_gold_count, aes(x=long, y = lat, group=group, fill=n), color="grey40") + 
+  theme_classic() + scale_fill_scico(palette = 'lajolla', begin=0.1, end=0.7) + 
+  labs(title="GABF Gold Medal Winners in 1987 - 2020", subtitle="this is still a test", 
+       fill= "Gold Medals by State", caption="data source: XX") +
+  theme(legend.position="bottom", axis.ticks=element_blank(), axis.line=element_blank(), 
+        axis.text=element_blank(), axis.title=element_blank(), plot.title=element_text(face="bold"))
+
+p1 / (p2 + p3) +  plot_layout(heights = c(2, 1))
+```
+
+### Word clouds
+
+```{r wordclouds}
+# all beers
+beer_name_freq <- beer_data %>% pull(beer_name) %>% str_split(" ") %>% unlist() %>% table() %>% data.frame()
+beer_name_freq <- beer_name_freq[order(beer_name_freq[,2], decreasing=TRUE),]
+
+beer_name_freq <- beer_name_freq %>% filter(.!="IPA", .!="Porter", .!="Lager", .!="Stout", .!="Ale", .!="Pale")
+
+wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.4, min.freq=1)
+
+# Gold medalists
+beer_name_freq <- beer_data %>% filter(medal=="Gold") %>% pull(beer_name) %>% str_split(" ") %>% unlist() %>% table() %>% data.frame()
+beer_name_freq <- beer_name_freq[order(beer_name_freq[,2], decreasing=TRUE),]
+
+beer_name_freq <- beer_name_freq %>% filter(.!="IPA", .!="Porter", .!="Lager", .!="Stout", .!="Ale", .!="Pale")
+
+wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.4, min.freq=1)
+
+
+# IPAs
+beer_name_freq <- beer_data %>% filter(category=="American-Style India Pale Ale") %>%  pull(beer_name) %>% str_split(" ") %>% unlist() %>% table() %>% data.frame()
+beer_name_freq <- beer_name_freq[order(beer_name_freq[,2], decreasing=TRUE),]
+
+beer_name_freq <- beer_name_freq %>% filter(.!="IPA")
+
+wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.4, min.freq=1)
+
+# Light lagers
+beer_name_freq <- beer_data %>% filter(category=="American-Style Light Lager") %>%  pull(beer_name) %>% str_split(" ") %>% unlist() %>% table() %>% data.frame()
+beer_name_freq <- beer_name_freq[order(beer_name_freq[,2], decreasing=TRUE),]
+
+#beer_name_freq <- beer_name_freq %>% filter(.!="Oatmeal", .!="Stout")
+
+wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.3, min.freq=1)
