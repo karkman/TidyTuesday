@@ -1,3 +1,3 @@
 # TidyTuesdays
-This repository contains data wrangling on #TiduTuesday data sets.
+This repository contains data wrangling on #TidyTuesday data sets.
 
