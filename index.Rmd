@@ -1,6 +1,6 @@
 ---
 title: "TidyTuesday"
-subtitle: "Data wrangling with #TidyTuesday adta sets"
+subtitle: "Data wrangling with #TidyTuesday data sets"
 author: "Antti Karkman, 2020"
 output:
   html_document:
@@ -8,8 +8,8 @@ output:
     toc: true
     toc_depth: 4
     fig_caption: true
-    fig_width: 6
-    fig_height: 4
+    fig_width: 8
+    fig_height: 6
     code_folding: hide
 ---
 

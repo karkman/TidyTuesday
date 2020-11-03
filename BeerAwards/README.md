@@ -49,50 +49,54 @@ ggplot() +
 
 ### Word clouds
 
+Wordclouds from beer names
+
+#### All beers
+
 ``` r
-# all beers
 beer_name_freq <- beer_data %>% pull(beer_name) %>% str_split(" ") %>% unlist() %>% table() %>% data.frame()
 beer_name_freq <- beer_name_freq[order(beer_name_freq[,2], decreasing=TRUE),]
 
 beer_name_freq <- beer_name_freq %>% filter(.!="IPA", .!="Porter", .!="Lager", .!="Stout", .!="Ale", .!="Pale")
 
-wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.4, min.freq=1)
+wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.3, min.freq=1)
 ```
 
-![](README_files/figure-gfm/wordclouds-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+#### Gold medalists
 
 ``` r
-# Gold medalists
 beer_name_freq <- beer_data %>% filter(medal=="Gold") %>% pull(beer_name) %>% str_split(" ") %>% unlist() %>% table() %>% data.frame()
 beer_name_freq <- beer_name_freq[order(beer_name_freq[,2], decreasing=TRUE),]
 
 beer_name_freq <- beer_name_freq %>% filter(.!="IPA", .!="Porter", .!="Lager", .!="Stout", .!="Ale", .!="Pale")
 
-wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.4, min.freq=1)
+wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.3, min.freq=1)
 ```
 
-![](README_files/figure-gfm/wordclouds-2.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+#### IPAs
 
 ``` r
-# IPAs
 beer_name_freq <- beer_data %>% filter(category=="American-Style India Pale Ale") %>%  pull(beer_name) %>% str_split(" ") %>% unlist() %>% table() %>% data.frame()
 beer_name_freq <- beer_name_freq[order(beer_name_freq[,2], decreasing=TRUE),]
 
 beer_name_freq <- beer_name_freq %>% filter(.!="IPA")
 
-wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.4, min.freq=1)
+wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.3, min.freq=1)
 ```
 
-![](README_files/figure-gfm/wordclouds-3.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+
+#### Light lagers
 
 ``` r
-# Light lagers
 beer_name_freq <- beer_data %>% filter(category=="American-Style Light Lager") %>%  pull(beer_name) %>% str_split(" ") %>% unlist() %>% table() %>% data.frame()
 beer_name_freq <- beer_name_freq[order(beer_name_freq[,2], decreasing=TRUE),]
-
-#beer_name_freq <- beer_name_freq %>% filter(.!="Oatmeal", .!="Stout")
 
 wordcloud(beer_name_freq[,1], beer_name_freq[,2], max.words=100, colors=scico(5, palette = 'lajolla', begin=0.2, end=0.7), random.order=FALSE, rot.per=0.3, min.freq=1)
 ```
 
-![](README_files/figure-gfm/wordclouds-4.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-9-1.png)<!-- -->
