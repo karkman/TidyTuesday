@@ -23,5 +23,5 @@ output:
 
 ***
 
-```{r child = "PhoneUsage/README.Rmd", eval=FALSE}
+```{r child = "PhoneUsage/README.Rmd"}
 ```
