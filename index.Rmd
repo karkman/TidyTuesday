@@ -8,8 +8,6 @@ output:
     toc: true
     toc_depth: 4
     fig_caption: true
-    fig_width: 8
-    fig_height: 6
     code_folding: hide
 ---
 
@@ -25,5 +23,5 @@ output:
 
 ***
 
-```{r child = "PhoneUsage/README.Rmd"}
+```{r child = "PhoneUsage/README.Rmd", eval=FALSE}
 ```

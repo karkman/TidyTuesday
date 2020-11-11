@@ -1,5 +1,5 @@
 
-## Historical Phone Usage
+## Week 46 - Historical Phone Usage
 
 ### The Data and Nokia Font
 
@@ -143,7 +143,7 @@ anim <- phones_map %>% filter(year<2018) %>% ggplot() +
   scale_fill_gradient(na.value="white")
 
 #anim
-animate(anim, 200, fps = 10,  width = 1200, height = 1000,
+animate(anim, 200, fps = 10,  width = 1200, height = 800,
         renderer = gifski_renderer("./mobiles_map.gif"), end_pause = 2, start_pause =  2)
 ```
 
