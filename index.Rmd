@@ -22,3 +22,8 @@ output:
 
 ```{r child = "IKEA/README.Rmd"}
 ```
+
+***
+
+```{r child = "PhoneUsage/README.Rmd"}
+```
