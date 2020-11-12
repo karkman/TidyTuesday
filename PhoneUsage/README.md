@@ -153,7 +153,7 @@ animate(anim, 200, fps = 10,  width = 1200, height = 800,
         renderer = gifski_renderer("mobiles_map.gif"), end_pause = 2, start_pause =  2)
 ```
 
-![](mobiles_map.gif)
+![](README_files/figure-gfm/unnamed-chunk-7-1.gif)<!-- -->
 
 ``` r
 showtext_auto(FALSE)
@@ -185,17 +185,17 @@ sessionInfo()
     ##  [1] httr_1.4.2         maps_3.3.0         jsonlite_1.7.1     modelr_0.1.8      
     ##  [5] assertthat_0.2.1   blob_1.2.1         cellranger_1.1.0   yaml_2.2.1        
     ##  [9] progress_1.2.2     pillar_1.4.6       backports_1.1.10   glue_1.4.2        
-    ## [13] digest_0.6.25      rvest_0.3.6        colorspace_1.4-1   htmltools_0.5.0   
-    ## [17] lpSolve_5.6.15     pkgconfig_2.0.3    broom_0.7.0        gifski_0.8.6      
-    ## [21] haven_2.3.1        scales_1.1.1       tweenr_1.0.1       generics_0.0.2    
-    ## [25] farver_2.0.3       ellipsis_0.3.1     withr_2.2.0        cli_2.0.2         
-    ## [29] magrittr_1.5       crayon_1.3.4       readxl_1.3.1       evaluate_0.14     
-    ## [33] fs_1.5.0           fansi_0.4.1        xml2_1.3.2         class_7.3-17      
-    ## [37] tools_3.6.2        prettyunits_1.1.1  hms_0.5.3          lifecycle_0.2.0   
-    ## [41] munsell_0.5.0      reprex_0.3.0       compiler_3.6.2     e1071_1.7-4       
-    ## [45] rlang_0.4.8        classInt_0.4-3     units_0.6-7        grid_3.6.2        
-    ## [49] rstudioapi_0.11    labeling_0.3       rmarkdown_2.3      gtable_0.3.0      
-    ## [53] DBI_1.1.0          curl_4.3           R6_2.4.1           lubridate_1.7.9   
-    ## [57] knitr_1.29         utf8_1.1.4         KernSmooth_2.23-17 stringi_1.5.3     
-    ## [61] Rcpp_1.0.5         vctrs_0.3.4        sf_0.9-6           dbplyr_1.4.4      
-    ## [65] tidyselect_1.1.0   xfun_0.17
+    ## [13] digest_0.6.25      rvest_0.3.6        colorspace_1.4-1   plyr_1.8.6        
+    ## [17] htmltools_0.5.0    lpSolve_5.6.15     pkgconfig_2.0.3    broom_0.7.0       
+    ## [21] gifski_0.8.6       haven_2.3.1        scales_1.1.1       tweenr_1.0.1      
+    ## [25] generics_0.0.2     farver_2.0.3       ellipsis_0.3.1     withr_2.2.0       
+    ## [29] cli_2.0.2          magrittr_1.5       crayon_1.3.4       readxl_1.3.1      
+    ## [33] evaluate_0.14      fs_1.5.0           fansi_0.4.1        xml2_1.3.2        
+    ## [37] class_7.3-17       tools_3.6.2        prettyunits_1.1.1  hms_0.5.3         
+    ## [41] lifecycle_0.2.0    munsell_0.5.0      reprex_0.3.0       compiler_3.6.2    
+    ## [45] e1071_1.7-4        rlang_0.4.8        classInt_0.4-3     units_0.6-7       
+    ## [49] grid_3.6.2         rstudioapi_0.11    labeling_0.3       rmarkdown_2.3     
+    ## [53] gtable_0.3.0       DBI_1.1.0          curl_4.3           R6_2.4.1          
+    ## [57] lubridate_1.7.9    knitr_1.29         utf8_1.1.4         KernSmooth_2.23-17
+    ## [61] stringi_1.5.3      Rcpp_1.0.5         vctrs_0.3.4        sf_0.9-6          
+    ## [65] dbplyr_1.4.4       tidyselect_1.1.0   xfun_0.17

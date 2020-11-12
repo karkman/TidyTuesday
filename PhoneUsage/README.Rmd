@@ -103,12 +103,10 @@ anim <- phones_map %>% filter(year<2018) %>% ggplot() +
 ```
 
 #### Save the animation
-```{r, fig.width=15, fig.height=10, warning=FALSE, message=FALSE, eval=FALSE}
+```{r, fig.width=15, fig.height=10, warning=FALSE, message=FALSE}
 animate(anim, 200, fps = 10,  width = 1200, height = 800,
         renderer = gifski_renderer("mobiles_map.gif"), end_pause = 2, start_pause =  2)
 ```
-
-![](mobiles_map.gif)
 
 ```{r}
 showtext_auto(FALSE)
